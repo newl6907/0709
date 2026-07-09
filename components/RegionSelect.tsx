@@ -1,0 +1,92 @@
+"use client";
+
+import { useEffect, useMemo } from "react";
+import { pushEvent } from "../lib/ga";
+
+const regionOptions = [
+  {
+    sido: "서울특별시",
+    sigungu: ["종로구", "중구", "강남구"],
+  },
+  {
+    sido: "부산광역시",
+    sigungu: ["해운대구", "수영구"],
+  },
+  {
+    sido: "대구광역시",
+    sigungu: ["중구", "수성구"],
+  },
+];
+
+type RegionSelectProps = {
+  sido: string;
+  sigungu: string;
+  onSidoChange: (sido: string) => void;
+  onSigunguChange: (sigungu: string) => void;
+};
+
+export default function RegionSelect({
+  sido,
+  sigungu,
+  onSidoChange,
+  onSigunguChange,
+}: RegionSelectProps) {
+  const currentSigunguOptions = useMemo(
+    () => regionOptions.find((entry) => entry.sido === sido)?.sigungu ?? [],
+    [sido]
+  );
+
+  useEffect(() => {
+    if (sido && sigungu) {
+      pushEvent("region_selected", { sido, sigungu });
+    }
+  }, [sido, sigungu]);
+
+  return (
+    <div className="space-y-4 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+      <div>
+        <label htmlFor="sido" className="block text-sm font-semibold text-zinc-700">
+          시도
+        </label>
+        <select
+          id="sido"
+          name="sido"
+          value={sido}
+          onChange={(event) => {
+            onSidoChange(event.target.value);
+            onSigunguChange("");
+          }}
+          className="mt-2 w-full rounded-2xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-base text-zinc-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
+        >
+          <option value="">시도를 선택하세요</option>
+          {regionOptions.map((entry) => (
+            <option key={entry.sido} value={entry.sido}>
+              {entry.sido}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="sigungu" className="block text-sm font-semibold text-zinc-700">
+          시군구
+        </label>
+        <select
+          id="sigungu"
+          name="sigungu"
+          value={sigungu}
+          onChange={(event) => onSigunguChange(event.target.value)}
+          disabled={!sido}
+          className="mt-2 w-full rounded-2xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-base text-zinc-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200 disabled:cursor-not-allowed disabled:opacity-60"
+        >
+          <option value="">시군구를 선택하세요</option>
+          {currentSigunguOptions.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  );
+}
