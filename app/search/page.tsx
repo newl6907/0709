@@ -69,10 +69,6 @@ export default function Home() {
             결과 보기
           </button>
         </form>
-
-        <p className="max-w-2xl text-sm text-[#717171]">
-          선택한 항목이 최소 하나라도 없으면 결과 페이지로 이동할 수 없습니다. 현재는 샘플 지역/품목 데이터로 동작합니다.
-        </p>
       </div>
     </main>
   );

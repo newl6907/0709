@@ -4,6 +4,7 @@ import { useEffect, useMemo } from "react";
 import regionOptions from "../data/region-options.json";
 import { pushEvent } from "../lib/ga";
 import { sidoOptionsForItem, sigunguOptionsForItem } from "../lib/region-item-availability";
+import ChoiceGrid from "./ChoiceGrid";
 
 type RegionSelectProps = {
   sido: string;
@@ -38,51 +39,29 @@ export default function RegionSelect({
 
   return (
     <div className="space-y-4 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-      <div>
-        <label htmlFor="sido" className="block text-sm font-semibold text-zinc-700">
-          시도
-        </label>
-        <select
-          id="sido"
-          name="sido"
-          value={sido}
-          onChange={(event) => {
-            onSidoChange(event.target.value);
-            onSigunguChange("");
-          }}
-          className="mt-2 w-full rounded-2xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-base text-zinc-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
-        >
-          <option value="">시도를 선택하세요</option>
-          {regionOptions
-            .filter((entry) => availableSido.includes(entry.sido))
-            .map((entry) => (
-              <option key={entry.sido} value={entry.sido}>
-                {entry.sido}
-              </option>
-            ))}
-        </select>
-      </div>
+      <ChoiceGrid
+        id="sido"
+        label="시도"
+        name="sido"
+        options={regionOptions
+          .filter((entry) => availableSido.includes(entry.sido))
+          .map((entry) => entry.sido)}
+        value={sido}
+        onChange={(newSido) => {
+          onSidoChange(newSido);
+          onSigunguChange("");
+        }}
+      />
 
-      <div>
-        <label htmlFor="sigungu" className="block text-sm font-semibold text-zinc-700">
-          시군구
-        </label>
-        <select
-          id="sigungu"
-          name="sigungu"
-          value={sigungu}
-          onChange={(event) => onSigunguChange(event.target.value)}
-          disabled={!sido}
-          className="mt-2 w-full rounded-2xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-base text-zinc-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          <option value="">시군구를 선택하세요</option>
-          {currentSigunguOptions.map((name) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-      </div>
+      <ChoiceGrid
+        id="sigungu"
+        label="시군구"
+        name="sigungu"
+        options={currentSigunguOptions}
+        value={sigungu}
+        onChange={onSigunguChange}
+        emptyMessage={sido ? "선택 가능한 시군구가 없습니다." : "시도를 먼저 선택하세요."}
+      />
     </div>
   );
 }

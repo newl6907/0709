@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import categories from "../data/item-categories.json";
 import { pushEvent } from "../lib/ga";
 import { availableItemsAnywhere, itemsForRegion } from "../lib/region-item-availability";
+import ChoiceGrid from "./ChoiceGrid";
 
 type ItemAutocompleteProps = {
   category: string;
@@ -41,49 +42,27 @@ export default function ItemAutocomplete({
 
   return (
     <div className="space-y-4 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-      <div>
-        <label htmlFor="category" className="block text-sm font-semibold text-zinc-700">
-          품목 카테고리
-        </label>
-        <select
-          id="category"
-          name="category"
-          value={category}
-          onChange={(event) => {
-            onCategoryChange(event.target.value);
-            onItemChange("");
-          }}
-          className="mt-2 w-full rounded-2xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-base text-zinc-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
-        >
-          <option value="">카테고리를 선택하세요</option>
-          {availableCategories.map((entry) => (
-            <option key={entry.category} value={entry.category}>
-              {entry.category}
-            </option>
-          ))}
-        </select>
-      </div>
+      <ChoiceGrid
+        id="category"
+        label="품목 카테고리"
+        name="category"
+        options={availableCategories.map((entry) => entry.category)}
+        value={category}
+        onChange={(newCategory) => {
+          onCategoryChange(newCategory);
+          onItemChange("");
+        }}
+      />
 
-      <div>
-        <label htmlFor="item" className="block text-sm font-semibold text-zinc-700">
-          표준 품목
-        </label>
-        <select
-          id="item"
-          name="item"
-          value={item}
-          onChange={(event) => onItemChange(event.target.value)}
-          disabled={!category}
-          className="mt-2 w-full rounded-2xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-base text-zinc-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200 disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          <option value="">품목을 선택하세요</option>
-          {availableItems.map((itemName) => (
-            <option key={itemName} value={itemName}>
-              {itemName}
-            </option>
-          ))}
-        </select>
-      </div>
+      <ChoiceGrid
+        id="item"
+        label="표준 품목"
+        name="item"
+        options={availableItems}
+        value={item}
+        onChange={onItemChange}
+        emptyMessage={category ? "선택 가능한 품목이 없습니다." : "카테고리를 먼저 선택하세요."}
+      />
     </div>
   );
 }
