@@ -71,7 +71,7 @@ function getBaseDate(record: FeeRecord) {
 export default function FeeResultCard({ records }: { records: FeeRecord[] }) {
   if (records.length === 0) {
     return (
-      <div className="rounded-2xl border border-[#EBEBEB] bg-white p-6 text-center text-[#717171] shadow-sm">
+      <div className="rounded-lg bg-surface p-6 text-center text-muted shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
         해당 지역에는 수수료 정보가 아직 없습니다.
       </div>
     );
@@ -101,29 +101,29 @@ export default function FeeResultCard({ records }: { records: FeeRecord[] }) {
           return (
             <article
               key={itemName}
-              className="rounded-2xl border border-[#EBEBEB] bg-white p-6 shadow-sm"
+              className="rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]"
             >
-              <p className="text-xs font-semibold uppercase tracking-wide text-[#717171]">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">
                 품목
               </p>
-              <h3 className="mt-1 text-xl font-semibold text-[#222222]">
+              <h3 className="mt-1 text-xl font-bold text-white">
                 {itemName}
               </h3>
-              <p className="mt-1 text-xs text-[#9B9B9B]">
+              <p className="mt-1 text-xs text-subtle">
                 규격 정보가 제공되지 않아 금액이 낮은 순으로 정렬했어요
               </p>
 
-              <div className="relative mt-9 flex items-start border-t-2 border-[#EBEBEB] pt-5">
+              <div className="relative mt-9 flex items-start border-t-2 border-line pt-5">
                 {sorted.map((record, index) => (
                   <div
                     key={index}
                     className="relative flex flex-1 flex-col items-center text-center"
                   >
-                    <span className="absolute -top-[29px] h-3.5 w-3.5 rounded-full border-4 border-white bg-[#E8604A] shadow" />
-                    <p className="text-sm font-semibold text-[#222222]">
+                    <span className="absolute -top-[29px] h-3.5 w-3.5 rounded-full border-4 border-surface bg-accent shadow" />
+                    <p className="text-sm font-semibold text-white">
                       {getSizeLabel(index, sorted.length)}
                     </p>
-                    <p className="mt-1 text-lg font-bold text-[#E8604A]">
+                    <p className="mt-1 text-lg font-bold text-accent">
                       {getFeeLabel(record)}
                     </p>
                   </div>
@@ -141,36 +141,36 @@ export default function FeeResultCard({ records }: { records: FeeRecord[] }) {
               return (
                 <article
                   key={`${itemName}-${index}`}
-                  className="rounded-2xl border border-[#EBEBEB] bg-white p-6 shadow-sm"
+                  className="rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]"
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-[#717171]">
+                      <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">
                         품목
                       </p>
-                      <h3 className="mt-1 text-xl font-semibold text-[#222222]">
+                      <h3 className="mt-1 text-xl font-bold text-white">
                         {itemName}
                       </h3>
-                      <p className="mt-1 text-sm text-[#717171]">
+                      <p className="mt-1 text-sm text-muted">
                         {specText ? specText : "상세 정보 없음"}
                       </p>
                     </div>
-                    <div className="rounded-2xl bg-[#FDECE8] px-5 py-3 text-right">
-                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C94B37]">
+                    <div className="rounded-lg bg-elevated px-5 py-3 text-right">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted">
                         수수료
                       </p>
-                      <p className="mt-1 text-2xl font-bold text-[#E8604A]">
+                      <p className="mt-1 text-2xl font-bold text-accent">
                         {getFeeLabel(record)}
                       </p>
                     </div>
                   </div>
                   <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-xl bg-[#F7F7F7] p-4 text-sm text-[#484848]">
-                      <p className="font-semibold text-[#222222]">관리기관</p>
+                    <div className="rounded-lg bg-elevated p-4 text-sm text-muted">
+                      <p className="font-semibold text-white">관리기관</p>
                       <p className="mt-1">{getManagingOrg(record)}</p>
                     </div>
-                    <div className="rounded-xl bg-[#F7F7F7] p-4 text-sm text-[#484848]">
-                      <p className="font-semibold text-[#222222]">데이터 기준일</p>
+                    <div className="rounded-lg bg-elevated p-4 text-sm text-muted">
+                      <p className="font-semibold text-white">데이터 기준일</p>
                       <p className="mt-1">{getBaseDate(record)}</p>
                     </div>
                   </div>

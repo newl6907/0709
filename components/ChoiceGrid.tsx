@@ -23,11 +23,11 @@ export default function ChoiceGrid({
 
   return (
     <div>
-      <p id={labelId} className="block text-sm font-semibold text-zinc-700">
+      <p id={labelId} className="block text-sm font-bold text-white">
         {label}
       </p>
       {options.length === 0 ? (
-        <p className="mt-2 text-sm text-zinc-400">{emptyMessage}</p>
+        <p className="mt-2 text-sm text-subtle">{emptyMessage}</p>
       ) : (
         <div role="radiogroup" aria-labelledby={labelId} className="mt-2 flex flex-wrap gap-2">
           {options.map((option) => {
@@ -39,20 +39,20 @@ export default function ChoiceGrid({
                 role="radio"
                 aria-checked={selected}
                 onClick={() => onChange(selected ? "" : option)}
-                className={`flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition ${
+                className={`flex items-center gap-2 rounded-full border px-3 py-2 text-sm font-bold transition ${
                   selected
-                    ? "border-[#E8604A] bg-[#FDECE8] text-[#C94B37]"
-                    : "border-zinc-300 bg-zinc-50 text-zinc-700 hover:border-[#E8604A] hover:text-[#C94B37]"
+                    ? "border-accent bg-elevated text-white"
+                    : "border-transparent bg-elevated text-muted hover:border-line-strong hover:text-white"
                 }`}
               >
                 <span
                   aria-hidden="true"
-                  className={`flex h-4 w-4 flex-none items-center justify-center rounded border-2 ${
-                    selected ? "border-[#E8604A] bg-[#E8604A]" : "border-zinc-300 bg-white"
+                  className={`flex h-4 w-4 flex-none items-center justify-center rounded-[4px] border-2 ${
+                    selected ? "border-accent bg-accent" : "border-line-strong bg-transparent"
                   }`}
                 >
                   {selected && (
-                    <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 text-white" fill="none">
+                    <svg viewBox="0 0 12 12" className="h-2.5 w-2.5 text-black" fill="none">
                       <path
                         d="M2 6l2.5 2.5L10 3"
                         stroke="currentColor"

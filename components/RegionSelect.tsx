@@ -38,7 +38,7 @@ export default function RegionSelect({
   }, [sido, sigungu]);
 
   return (
-    <div className="space-y-4 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+    <div className="space-y-4 rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
       <ChoiceGrid
         id="sido"
         label="시도"

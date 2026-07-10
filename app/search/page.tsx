@@ -29,17 +29,17 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-white py-12 px-4 sm:px-8">
+    <main className="min-h-screen bg-background py-12 px-4 sm:px-8">
       <div className="mx-auto w-full max-w-5xl space-y-10">
-        <section className="rounded-[32px] bg-[#FDECE8] p-8 shadow-sm">
+        <section className="rounded-lg bg-surface p-8 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
           <div className="max-w-3xl space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C94B37]">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted">
               우리 동네 가구 버리기
             </p>
-            <h1 className="text-4xl font-semibold text-[#222222] sm:text-5xl">
+            <h1 className="text-4xl font-bold text-white sm:text-5xl">
               큰 짐 수거함
             </h1>
-            <p className="text-base leading-7 text-[#484848]">
+            <p className="text-base leading-7 text-muted">
               가구를 버려야 할 때, 어떻게 버릴지 막막하다면? 맞춤 가이드를 알려드릴게요 🪑
             </p>
           </div>
@@ -64,7 +64,7 @@ export default function Home() {
           <button
             type="submit"
             disabled={!canSubmit}
-            className="mt-4 inline-flex h-14 w-full items-center justify-center rounded-full bg-[#E8604A] px-8 text-sm font-semibold text-white transition hover:bg-[#C94B37] disabled:cursor-not-allowed disabled:bg-[#DDDDDD] disabled:text-[#929292] xl:col-span-2"
+            className="mt-4 inline-flex h-14 w-full items-center justify-center rounded-full bg-accent px-8 text-sm font-bold uppercase tracking-[0.14em] text-black transition hover:bg-accent-strong disabled:cursor-not-allowed disabled:bg-elevated disabled:text-subtle xl:col-span-2"
           >
             결과 보기
           </button>

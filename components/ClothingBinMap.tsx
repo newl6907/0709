@@ -81,16 +81,16 @@ export default function ClothingBinMap({ bins }: ClothingBinMapProps) {
   }, [bins]);
 
   if (bins.length === 0) {
-    return <p className="text-sm text-zinc-600">의류수거함 위치 정보가 없습니다.</p>;
+    return <p className="text-sm text-muted">의류수거함 위치 정보가 없습니다.</p>;
   }
 
   return (
-    <div className="space-y-4 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+    <div className="space-y-4 rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
       <div>
-        <p className="text-sm font-semibold text-zinc-700">근처 의류수거함</p>
-        <p className="mt-1 text-sm text-zinc-600">서울 종로구 기준 샘플 데이터입니다.</p>
+        <p className="text-sm font-bold text-white">근처 의류수거함</p>
+        <p className="mt-1 text-sm text-muted">서울 종로구 기준 샘플 데이터입니다.</p>
       </div>
-      <div id="kakao-map" className="h-80 w-full rounded-3xl border border-zinc-200" />
+      <div id="kakao-map" className="h-80 w-full rounded-lg border border-line" />
     </div>
   );
 }
