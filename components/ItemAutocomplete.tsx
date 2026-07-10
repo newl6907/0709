@@ -3,10 +3,13 @@
 import { useEffect } from "react";
 import categories from "../data/item-categories.json";
 import { pushEvent } from "../lib/ga";
+import { availableItemsAnywhere, itemsForRegion } from "../lib/region-item-availability";
 
 type ItemAutocompleteProps = {
   category: string;
   item: string;
+  sido: string;
+  sigungu: string;
   onCategoryChange: (category: string) => void;
   onItemChange: (item: string) => void;
 };
@@ -14,10 +17,21 @@ type ItemAutocompleteProps = {
 export default function ItemAutocomplete({
   category,
   item,
+  sido,
+  sigungu,
   onCategoryChange,
   onItemChange,
 }: ItemAutocompleteProps) {
-  const availableItems = categories.find((entry) => entry.category === category)?.items ?? [];
+  const feeAvailableItems =
+    sido && sigungu ? itemsForRegion(sido, sigungu) : availableItemsAnywhere();
+
+  const availableCategories = categories.filter((entry) =>
+    entry.items.some((name) => feeAvailableItems.includes(name))
+  );
+
+  const availableItems = (
+    categories.find((entry) => entry.category === category)?.items ?? []
+  ).filter((name) => feeAvailableItems.includes(name));
 
   useEffect(() => {
     if (category && item) {
@@ -42,7 +56,7 @@ export default function ItemAutocomplete({
           className="mt-2 w-full rounded-2xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-base text-zinc-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
         >
           <option value="">카테고리를 선택하세요</option>
-          {categories.map((entry) => (
+          {availableCategories.map((entry) => (
             <option key={entry.category} value={entry.category}>
               {entry.category}
             </option>

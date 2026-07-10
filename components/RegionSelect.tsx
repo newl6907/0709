@@ -1,26 +1,14 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
+import regionOptions from "../data/region-options.json";
 import { pushEvent } from "../lib/ga";
-
-const regionOptions = [
-  {
-    sido: "서울특별시",
-    sigungu: ["종로구", "중구", "강남구"],
-  },
-  {
-    sido: "부산광역시",
-    sigungu: ["해운대구", "수영구"],
-  },
-  {
-    sido: "대구광역시",
-    sigungu: ["중구", "수성구"],
-  },
-];
+import { sidoOptionsForItem, sigunguOptionsForItem } from "../lib/region-item-availability";
 
 type RegionSelectProps = {
   sido: string;
   sigungu: string;
+  item: string;
   onSidoChange: (sido: string) => void;
   onSigunguChange: (sigungu: string) => void;
 };
@@ -28,13 +16,19 @@ type RegionSelectProps = {
 export default function RegionSelect({
   sido,
   sigungu,
+  item,
   onSidoChange,
   onSigunguChange,
 }: RegionSelectProps) {
-  const currentSigunguOptions = useMemo(
-    () => regionOptions.find((entry) => entry.sido === sido)?.sigungu ?? [],
-    [sido]
+  const availableSido = useMemo(
+    () => sidoOptionsForItem(item, regionOptions.map((entry) => entry.sido)),
+    [item]
   );
+
+  const currentSigunguOptions = useMemo(() => {
+    const allSigungu = regionOptions.find((entry) => entry.sido === sido)?.sigungu ?? [];
+    return sigunguOptionsForItem(sido, item, allSigungu);
+  }, [sido, item]);
 
   useEffect(() => {
     if (sido && sigungu) {
@@ -59,11 +53,13 @@ export default function RegionSelect({
           className="mt-2 w-full rounded-2xl border border-zinc-300 bg-zinc-50 px-4 py-3 text-base text-zinc-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
         >
           <option value="">시도를 선택하세요</option>
-          {regionOptions.map((entry) => (
-            <option key={entry.sido} value={entry.sido}>
-              {entry.sido}
-            </option>
-          ))}
+          {regionOptions
+            .filter((entry) => availableSido.includes(entry.sido))
+            .map((entry) => (
+              <option key={entry.sido} value={entry.sido}>
+                {entry.sido}
+              </option>
+            ))}
         </select>
       </div>
 

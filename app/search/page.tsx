@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ItemAutocomplete from "@/components/ItemAutocomplete";
 import RegionSelect from "@/components/RegionSelect";
+import { isItemAvailableInRegion } from "@/lib/region-item-availability";
 
 export default function Home() {
   const [category, setCategory] = useState("");
@@ -10,6 +11,22 @@ export default function Home() {
   const [sido, setSido] = useState("");
   const [sigungu, setSigungu] = useState("");
   const canSubmit = Boolean(category && item && sido && sigungu);
+
+  const handleItemChange = (newItem: string) => {
+    if (!isItemAvailableInRegion(newItem, sido, sigungu)) {
+      setSido("");
+      setSigungu("");
+    }
+    setItem(newItem);
+  };
+
+  const handleSigunguChange = (newSigungu: string) => {
+    if (!isItemAvailableInRegion(item, sido, newSigungu)) {
+      setCategory("");
+      setItem("");
+    }
+    setSigungu(newSigungu);
+  };
 
   return (
     <main className="min-h-screen bg-white py-12 px-4 sm:px-8">
@@ -32,14 +49,17 @@ export default function Home() {
           <ItemAutocomplete
             category={category}
             item={item}
+            sido={sido}
+            sigungu={sigungu}
             onCategoryChange={setCategory}
-            onItemChange={setItem}
+            onItemChange={handleItemChange}
           />
           <RegionSelect
             sido={sido}
             sigungu={sigungu}
+            item={item}
             onSidoChange={setSido}
-            onSigunguChange={setSigungu}
+            onSigunguChange={handleSigunguChange}
           />
           <button
             type="submit"
