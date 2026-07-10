@@ -1,57 +1,39 @@
-"use client";
+import Link from "next/link";
 
-import { useState } from "react";
-import ItemAutocomplete from "../components/ItemAutocomplete";
-import RegionSelect from "../components/RegionSelect";
-
-export default function Home() {
-  const [category, setCategory] = useState("");
-  const [item, setItem] = useState("");
-  const [sido, setSido] = useState("");
-  const [sigungu, setSigungu] = useState("");
-  const canSubmit = Boolean(category && item && sido && sigungu);
-
+export default function IntroPage() {
   return (
-    <main className="min-h-screen bg-zinc-50 py-12 px-4 sm:px-8">
-      <div className="mx-auto w-full max-w-5xl space-y-10">
-        <section className="rounded-[40px] border border-zinc-200 bg-white p-8 shadow-sm">
-          <div className="max-w-3xl space-y-4">
-            <p className="text-sm uppercase tracking-[0.25em] text-sky-600">우리 동네 버리기 가이드</p>
-            <h1 className="text-4xl font-semibold text-zinc-950 sm:text-5xl">
-              내 품목의 배출 수수료와 서비스 정보를 한 번에 확인하세요.
-            </h1>
-            <p className="text-base leading-7 text-zinc-600">
-              품목과 지역을 선택하면 대형폐기물 배출 수수료, 방문수거 가능 여부, 의류수거함 정보와 당근마켓 나눔 링크까지 제공합니다.
-            </p>
-          </div>
-        </section>
+    <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6 py-24">
+      {/* 작은 안내 문구 */}
+      <p className="text-sm font-bold tracking-wide text-[#E8604A] mb-4">
+        가구·가전 버리기 가이드
+      </p>
 
-        <form action="/result" className="grid gap-6 xl:grid-cols-[1.3fr_1fr]">
-          <ItemAutocomplete
-            category={category}
-            item={item}
-            onCategoryChange={setCategory}
-            onItemChange={setItem}
+      {/* 큰 제목 */}
+      <h1 className="text-5xl sm:text-6xl font-extrabold text-gray-900 text-center leading-tight mb-8">
+        큰 짐{" "}
+        <span className="relative inline-block">
+          <span
+            className="absolute inset-x-0 bottom-1 h-4 sm:h-5 bg-[#E8604A]/25 -rotate-1 rounded-sm"
+            aria-hidden="true"
           />
-          <RegionSelect
-            sido={sido}
-            sigungu={sigungu}
-            onSidoChange={setSido}
-            onSigunguChange={setSigungu}
-          />
-          <button
-            type="submit"
-            disabled={!canSubmit}
-            className="mt-4 inline-flex h-14 w-full items-center justify-center rounded-3xl bg-sky-900 px-8 text-sm font-semibold text-white transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:bg-zinc-300 xl:col-span-2"
-          >
-            결과 보기
-          </button>
-        </form>
+          <span className="relative">수거함</span>
+        </span>
+      </h1>
 
-        <p className="max-w-2xl text-sm text-zinc-600">
-          선택한 항목이 최소 하나라도 없으면 결과 페이지로 이동할 수 없습니다. 현재는 샘플 지역/품목 데이터로 동작합니다.
-        </p>
-      </div>
+      {/* 작은 설명 문구 */}
+      <p className="text-base sm:text-lg text-gray-500 text-center leading-relaxed mb-12">
+        가구를 버려야 할 때, 어떻게 버릴지 막막하다면?
+        <br />
+        맞춤 가이드를 알려드릴게요 🪑
+      </p>
+
+      {/* CTA 버튼 */}
+      <Link
+        href="/search"
+        className="inline-flex items-center justify-center rounded-full bg-[#E8604A] px-10 py-4 text-base font-bold text-white shadow-lg shadow-[#E8604A]/30 transition-transform hover:scale-105 hover:bg-[#d6543f] active:scale-95"
+      >
+        지금 버리러 가기
+      </Link>
     </main>
   );
 }

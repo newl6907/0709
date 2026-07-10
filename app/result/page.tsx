@@ -57,17 +57,17 @@ export default async function ResultPage({
   const clothingBins = getClothingBins(sido, sigungu);
 
   return (
-    <main className="min-h-screen bg-zinc-50 py-10 px-4 sm:px-8">
+    <main className="min-h-screen bg-white py-10 px-4 sm:px-8">
       <div className="mx-auto w-full max-w-5xl space-y-8">
-        <section className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm">
+        <section className="rounded-2xl border border-[#EBEBEB] bg-white p-8 shadow-sm">
           <div className="mb-6">
-            <p className="text-sm font-semibold text-zinc-500">검색 결과</p>
-            <h1 className="mt-2 text-3xl font-semibold text-zinc-950">
+            <p className="text-sm font-semibold text-[#717171]">검색 결과</p>
+            <h1 className="mt-2 text-3xl font-semibold text-[#222222]">
               {item || "품목 없음"} / {sido || "시도 없음"} {sigungu || "시군구 없음"}
             </h1>
           </div>
           {errorMessage ? (
-            <div className="rounded-3xl border border-rose-200 bg-rose-50 p-6 text-rose-700 shadow-sm">
+            <div className="rounded-2xl bg-[#FDECE8] p-6 text-[#C13515] shadow-sm">
               {errorMessage}
             </div>
           ) : (
@@ -81,17 +81,17 @@ export default async function ResultPage({
           clothingBins ? (
             <ClothingBinMap bins={clothingBins} />
           ) : (
-            <section className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-              <p className="text-sm text-zinc-600">
+            <section className="rounded-2xl border border-[#EBEBEB] bg-white p-6 shadow-sm">
+              <p className="text-sm text-[#484848]">
                 해당 지역의 의류수거함 데이터가 없습니다. 관할 구청 생활폐기물 안내 페이지를 확인하세요.
               </p>
             </section>
           )
         ) : null}
 
-        <section className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-          <p className="text-sm font-semibold text-zinc-700">당근마켓 나눔</p>
-          <p className="mt-2 text-zinc-600">버리기 전에 무료 나눔이 가능한지 확인해보세요.</p>
+        <section className="rounded-2xl border border-[#EBEBEB] bg-white p-6 shadow-sm">
+          <p className="text-sm font-semibold text-[#222222]">당근마켓 나눔</p>
+          <p className="mt-2 text-[#484848]">버리기 전에 무료 나눔이 가능한지 확인해보세요.</p>
           <DaangnLink item={item} />
         </section>
       </div>
