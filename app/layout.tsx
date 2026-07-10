@@ -38,7 +38,7 @@ export default function RootLayout({
               strategy="afterInteractive"
             />
             <Script id="ga-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${gaId}');`}
+              {`window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${gaId}', { page_path: window.location.pathname });`}
             </Script>
           </>
         ) : null}

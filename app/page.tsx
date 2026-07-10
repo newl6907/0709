@@ -39,7 +39,6 @@ export default function Home() {
             onSidoChange={setSido}
             onSigunguChange={setSigungu}
           />
-          <input type="hidden" name="category" value={category} />
           <button
             type="submit"
             disabled={!canSubmit}
