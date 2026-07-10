@@ -10,6 +10,8 @@ export const metadata = {
   title: "우리 동네 버리기 가이드 - 결과",
 };
 
+const CLOTHING_BIN_ITEMS = ["의류", "이불", "카페트"];
+
 export default async function ResultPage({
   searchParams,
 }: {
@@ -61,7 +63,7 @@ export default async function ResultPage({
 
         <FreePickupBanner itemName={item} />
 
-        {item === "의류" ? (
+        {CLOTHING_BIN_ITEMS.includes(item) ? (
           clothingBins ? (
             <ClothingBinMap bins={clothingBins} />
           ) : (
