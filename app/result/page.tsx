@@ -4,6 +4,7 @@ import ClothingBinMap from "../../components/ClothingBinMap";
 import ResultPageEvent from "../../components/ResultPageEvent";
 import DaangnLink from "../../components/DaangnLink";
 import { getClothingBins } from "../../lib/clothing-bins";
+import { findFeeRecords } from "../../lib/fee-search";
 
 export const metadata = {
   title: "우리 동네 버리기 가이드 - 결과",
@@ -23,37 +24,20 @@ export default async function ResultPage({
   const sido = params.sido ?? "";
   const sigungu = params.sigungu ?? "";
 
-  let records = [];
+  let records: Awaited<ReturnType<typeof findFeeRecords>> = [];
   let errorMessage = "";
 
   if (!item || !sido || !sigungu) {
     errorMessage = "검색어가 올바르지 않습니다. 지역과 품목을 모두 선택한 후 다시 시도해주세요.";
   } else {
     try {
-      const siteUrl =
-        process.env.NEXT_PUBLIC_SITE_URL ||
-        (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
-      const feeUrl = new URL("/api/fee-search", siteUrl);
-      feeUrl.searchParams.set("sido", sido);
-      feeUrl.searchParams.set("sigungu", sigungu);
-      feeUrl.searchParams.set("item", item);
-
-      const feeResponse = await fetch(feeUrl, {
-        cache: "no-store",
-      });
-
-      if (!feeResponse.ok) {
-        throw new Error(`요청에 실패했습니다. 상태 코드: ${feeResponse.status}`);
-      }
-
-      const feeData = await feeResponse.json();
-      records = feeData.items ?? [];
-    } catch (error) {
-      errorMessage = error instanceof Error ? error.message : "알 수 없는 서버 오류가 발생했습니다.";
+      records = await findFeeRecords(sido, sigungu, item);
+    } catch {
+      errorMessage = "정적 요금 파일을 읽을 수 없습니다.";
     }
   }
 
-  const feeSummary = records[0]?.fee ?? "-";
+  const feeSummary = String(records[0]?.fee ?? "-");
   const clothingBins = getClothingBins(sido, sigungu);
 
   return (
