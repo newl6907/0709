@@ -3,8 +3,10 @@ import FreePickupBanner from "../../components/FreePickupBanner";
 import ClothingBinMap from "../../components/ClothingBinMap";
 import ResultPageEvent from "../../components/ResultPageEvent";
 import DaangnLink from "../../components/DaangnLink";
+import WasteCompanyList from "../../components/WasteCompanyList";
 import { getClothingBins } from "../../lib/clothing-bins";
 import { findFeeRecords } from "../../lib/fee-search";
+import { getWasteCompanies } from "../../lib/waste-companies";
 
 export const metadata = {
   title: "우리 동네 버리기 가이드 - 결과",
@@ -41,6 +43,7 @@ export default async function ResultPage({
 
   const feeSummary = String(records[0]?.fee ?? "-");
   const clothingBins = getClothingBins(sido, sigungu);
+  const wasteCompanies = getWasteCompanies(sido, sigungu);
 
   return (
     <main className="min-h-screen bg-background py-10 px-4 sm:px-8">
@@ -74,6 +77,8 @@ export default async function ResultPage({
             </section>
           )
         ) : null}
+
+        <WasteCompanyList companies={wasteCompanies} />
 
         <section className="rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
           <p className="text-sm font-bold text-white">당근마켓 나눔</p>
