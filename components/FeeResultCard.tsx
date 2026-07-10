@@ -71,7 +71,7 @@ function getBaseDate(record: FeeRecord) {
 export default function FeeResultCard({ records }: { records: FeeRecord[] }) {
   if (records.length === 0) {
     return (
-      <div className="rounded-lg bg-surface p-6 text-center text-muted shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
+      <div className="rounded-lg border border-line-strong bg-surface p-6 text-center text-muted shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
         해당 지역에는 수수료 정보가 아직 없습니다.
       </div>
     );
@@ -101,7 +101,7 @@ export default function FeeResultCard({ records }: { records: FeeRecord[] }) {
           return (
             <article
               key={itemName}
-              className="rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]"
+              className="rounded-lg border border-line-strong bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]"
             >
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-muted">
                 품목
@@ -141,7 +141,7 @@ export default function FeeResultCard({ records }: { records: FeeRecord[] }) {
               return (
                 <article
                   key={`${itemName}-${index}`}
-                  className="rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]"
+                  className="rounded-lg border border-line-strong bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]"
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div>

@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-background py-12 px-4 sm:px-8">
       <div className="mx-auto w-full max-w-5xl space-y-10">
-        <section className="rounded-lg bg-surface p-8 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
+        <section className="rounded-lg border border-line-strong bg-surface p-8 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
           <div className="max-w-3xl space-y-4">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted">
               우리 동네 가구 버리기

@@ -15,7 +15,7 @@ export default function FreePickupBanner({ itemName }: FreePickupBannerProps) {
   }
 
   return (
-    <section className="rounded-lg border border-announcement/30 bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
+    <section className="rounded-lg border border-line-strong bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-announcement">

@@ -56,7 +56,7 @@ export default async function ResultPage({
             </h1>
           </div>
           {errorMessage ? (
-            <div className="rounded-lg bg-elevated p-6 text-negative shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
+            <div className="rounded-lg border border-line-strong bg-elevated p-6 text-negative shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
               {errorMessage}
             </div>
           ) : (
@@ -70,7 +70,7 @@ export default async function ResultPage({
           clothingBins ? (
             <ClothingBinMap bins={clothingBins} />
           ) : (
-            <section className="rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
+            <section className="rounded-lg border border-line-strong bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
               <p className="text-sm text-muted">
                 해당 지역의 의류수거함 데이터가 없습니다. 관할 구청 생활폐기물 안내 페이지를 확인하세요.
               </p>
@@ -80,7 +80,7 @@ export default async function ResultPage({
 
         <WasteCompanyList companies={wasteCompanies} />
 
-        <section className="rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
+        <section className="rounded-lg border border-line-strong bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
           <p className="text-sm font-bold text-white">당근마켓 나눔</p>
           <p className="mt-2 text-muted">버리기 전에 무료 나눔이 가능한지 확인해보세요.</p>
           <DaangnLink item={item} />

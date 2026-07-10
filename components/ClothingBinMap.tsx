@@ -85,7 +85,7 @@ export default function ClothingBinMap({ bins }: ClothingBinMapProps) {
   }
 
   return (
-    <div className="space-y-4 rounded-lg bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
+    <div className="space-y-4 rounded-lg border border-line-strong bg-surface p-6 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
       <div>
         <p className="text-sm font-bold text-white">근처 의류수거함</p>
         <p className="mt-1 text-sm text-muted">서울 종로구 기준 샘플 데이터입니다.</p>

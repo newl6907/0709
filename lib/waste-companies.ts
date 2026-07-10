@@ -26,3 +26,7 @@ export function getWasteCompanies(sido: string, sigungu: string): WasteCompany[]
 export function categoryLabel(code: number): string {
   return CATEGORY_LABELS[code] ?? `${code}`;
 }
+
+export function formatPhone(phone: string): string {
+  return `02-${phone}`;
+}
