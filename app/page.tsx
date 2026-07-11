@@ -5,7 +5,7 @@ export default function IntroPage() {
     <main className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-24">
       {/* 작은 안내 문구 */}
       <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted mb-4">
-        가구·가전 버리기 가이드
+        우리집 큰 짐도, 큰 고민도
       </p>
 
       {/* 큰 제목 */}
@@ -16,7 +16,7 @@ export default function IntroPage() {
             className="absolute inset-x-0 bottom-1 h-4 sm:h-5 bg-accent/25 -rotate-1 rounded-sm"
             aria-hidden="true"
           />
-          <span className="relative">수거함</span>
+          <span className="relative">덜자</span>
         </span>
       </h1>
 

@@ -34,10 +34,10 @@ export default function Home() {
         <section className="rounded-lg border border-line-strong bg-surface p-8 shadow-[0_8px_8px_rgba(0,0,0,0.3)]">
           <div className="max-w-3xl space-y-4">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted">
-              우리 동네 가구 버리기
+              우리집 큰 짐도, 큰 고민도
             </p>
             <h1 className="text-4xl font-bold text-white sm:text-5xl">
-              큰 짐 수거함
+              큰 짐 덜자
             </h1>
             <p className="text-base leading-7 text-muted">
               가구를 버려야 할 때, 어떻게 버릴지 막막하다면? 맞춤 가이드를 알려드릴게요 🪑
