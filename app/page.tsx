@@ -17,7 +17,7 @@ export default function IntroPage() {
           />
           <span className="relative">큰 짐</span>
         </span>{" "}
-        덜자
+        덜어요
       </h1>
 
       {/* 작은 설명 문구 */}

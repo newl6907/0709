@@ -37,7 +37,7 @@ export default function Home() {
               우리집 큰 짐도, 큰 고민도
             </p>
             <h1 className="text-4xl font-bold text-white sm:text-5xl">
-              큰 짐 덜자
+              큰 짐 덜어요
             </h1>
             <p className="text-base leading-7 text-muted">
               가구를 버려야 할 때, 어떻게 버릴지 막막하다면? 맞춤 가이드를 알려드릴게요 🪑
