@@ -10,14 +10,14 @@ export default function IntroPage() {
 
       {/* 큰 제목 */}
       <h1 className="text-5xl sm:text-6xl font-bold text-white text-center leading-tight mb-8">
-        큰 짐{" "}
         <span className="relative inline-block">
           <span
             className="absolute inset-x-0 bottom-1 h-4 sm:h-5 bg-accent/25 -rotate-1 rounded-sm"
             aria-hidden="true"
           />
-          <span className="relative">덜자</span>
-        </span>
+          <span className="relative">큰 짐</span>
+        </span>{" "}
+        덜자
       </h1>
 
       {/* 작은 설명 문구 */}
