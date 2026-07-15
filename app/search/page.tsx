@@ -4,6 +4,7 @@ import { useState } from "react";
 import ItemAutocomplete from "@/components/ItemAutocomplete";
 import RegionSelect from "@/components/RegionSelect";
 import { isItemAvailableInRegion } from "@/lib/region-item-availability";
+import { pushEvent } from "@/lib/ga";
 
 export default function Home() {
   const [category, setCategory] = useState("");
@@ -64,6 +65,9 @@ export default function Home() {
           <button
             type="submit"
             disabled={!canSubmit}
+            onClick={() =>
+              pushEvent("result_view_click", { category, item_name: item, sido, sigungu })
+            }
             className="mt-4 inline-flex h-14 w-full items-center justify-center rounded-full bg-accent px-8 text-sm font-bold uppercase tracking-[0.14em] text-black transition hover:bg-accent-strong disabled:cursor-not-allowed disabled:bg-elevated disabled:text-subtle xl:col-span-2"
           >
             결과 보기
